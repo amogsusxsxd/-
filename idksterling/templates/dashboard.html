@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет - GameHub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .dashboard-header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .user-info {
+            margin-bottom: 20px;
+        }
+        
+        .purchases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .purchase-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-header">
+            <h1>👋 Добро пожаловать, {{ user.username }}!</h1>
+            <p>Ваш личный кабинет</p>
+            <a href="/logout" style="color: #667eea; text-decoration: none;">Выйти</a>
+        </div>
+        
+        <div class="purchases-grid">
+            {% for purchase in purchases %}
+            <div class="purchase-card">
+                <h3>{{ purchase.name }}</h3>
+                <p>Куплено: {{ purchase.purchase_date }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

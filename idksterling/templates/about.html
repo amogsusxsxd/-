@@ -1,0 +1,80 @@
+{% extends 'Data_Base.html' %}
+
+{% block title %} О нас - GameHub {% endblock %}
+
+{% block content %}
+<div class="about-header" style="text-align: center; margin-bottom: 40px;">
+    <h1 style="font-size: 3em; color: #022f7e; margin-bottom: 20px; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+         О GameHub
+    </h1>
+    <p style="font-size: 1.2em; color: #666; max-width: 800px; margin: 0 auto;">
+        Мы - ведущая платформа для настоящих геймеров, где страсть к играм объединяет миллионы игроков по всему миру
+    </p>
+</div>
+
+<div class="about-content">
+    <div class="story-section" style="background: #f8f9fa; padding: 40px; border-radius: 20px; margin-bottom: 40px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+            <div>
+                <h2 style="color: #022f7e; margin-bottom: 20px;">Наша история</h2>
+                <p style="line-height: 1.6; color: #555; margin-bottom: 15px;">
+                    GameHub был основан в 2025 году группой энтузиастов, которые верили, что каждый геймер заслуживает лучшего игрового опыта.
+                </p>
+                <p style="line-height: 1.6; color: #555;">
+                    С тех пор мы выросли в крупнейшую игровую платформу с более чем 500 тысяч активных пользователей и библиотекой из 10,000+ игр.
+                </p>
+            </div>
+            <div style="text-align: center;">
+                <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; border-radius: 15px; display: inline-block;">
+                    <div style="font-size: 2.5em; font-weight: bold;">500Т+</div>
+                    <div>активных игроков</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="values-section" style="margin-bottom: 40px;">
+        <h2 style="text-align: center; color: #022f7e; margin-bottom: 30px;">Наши ценности</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <div class="value-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center;">
+                <div style="font-size: 2.5em; margin-bottom: 15px;"></div>
+                <h3 style="color: #022f7e; margin-bottom: 10px;">Качество</h3>
+                <p style="color: #666;">Мы тщательно отбираем каждую игу в нашем каталоге</p>
+            </div>
+            
+            <div class="value-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center;">
+                <div style="font-size: 2.5em; margin-bottom: 15px;"></div>
+                <h3 style="color: #022f7e; margin-bottom: 10px;">Сообщество</h3>
+                <p style="color: #666;">Создаем пространство для общения геймеров</p>
+            </div>
+            
+            <div class="value-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center;">
+                <div style="font-size: 2.5em; margin-bottom: 15px;"></div>
+                <h3 style="color: #022f7e; margin-bottom: 10px;">Инновации</h3>
+                <p style="color: #666;">Постоянно развиваем платформу для вашего комфорта</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="achievements" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 40px; border-radius: 20px; text-align: center;">
+        <h2 style="margin-bottom: 30px;">Наши достижения</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
+            <div>
+                <div style="font-size: 2.5em; font-weight: bold;">10K+</div>
+                <div>игр в каталоге</div>
+            </div>
+            <div>
+                <div style="font-size: 2.5em; font-weight: bold;">50+</div>
+                <div>стран присутствия</div>
+            </div>
+            <div>
+                <div style="font-size: 2.5em; font-weight: bold;">99.9%</div>
+                <div>uptime серверов</div>
+            </div>
+            <div>
+                <div style="font-size: 2.5em; font-weight: bold;">24/7</div>
+                <div>поддержка</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

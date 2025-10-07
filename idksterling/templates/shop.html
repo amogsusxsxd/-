@@ -1,0 +1,81 @@
+{% extends 'Data_Base.html' %}
+
+{% block title %} Магазин - GameHub {% endblock %}
+
+{% block content %}
+<h1 style="font-size: 2.5em; color: #022f7e; margin-bottom: 20px;">🎮 Магазин игр</h1>
+
+<div class="filters" style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
+    <h3>Фильтры</h3>
+    <form method="GET" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+        <div>
+            <label for="genre">Жанр:</label>
+            <select id="genre" name="genre" style="width: 100%; padding: 8px;">
+                <option value="">Все жанры</option>
+                {% for genre in genres %}
+                <option value="{{ genre.name }}" {% if genre.name == selected_genre %}selected{% endif %}>
+                    {{ genre.name }} 
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div>
+            <label for="platform">Платформа:</label>
+            <select id="platform" name="platform" style="width: 100%; padding: 8px;">
+                <option value="">Все платформы</option>
+                {% for platform in platforms %}
+                <option value="{{ platform.name }}" {% if platform.name == selected_platform %}selected{% endif %}>
+                    {{ platform.name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div>
+            <label for="publisher">Издатель:</label>
+            <select id="publisher" name="publisher" style="width: 100%; padding: 8px;">
+                <option value="">Все издатели</option>
+                {% for publisher in publishers %}
+                <option value="{{ publisher.name }}" {% if publisher.name == selected_publisher %}selected{% endif %}>
+                    {{ publisher.name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div style="display: flex; align-items: end;">
+            <button type="submit" class="btn" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                Применить фильтры
+            </button>
+            <a href="/shop" class="btn" style="background: #6c757d; margin-left: 10px;">Сбросить</a>
+        </div>
+    </form>
+</div>
+
+<div class="products-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+    {% for product in shop %}
+    <div class="product-card" style="background: white; border-radius: 15px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+        <a href="{{ url_for('product_detail', product_id=product.id) }}" style="text-decoration: none; color: inherit;">
+            <img src="{{ product.image_url }}" alt="{{ product.name }}" 
+                 style="width: 100%; height: 150px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
+            <h3 style="color: #022f7e; margin-bottom: 10px;">{{ product.name }}</h3>
+            <p style="color: #666; margin-bottom: 10px; font-size: 0.9em;">{{ product.genre_name }}</p>
+            <div style="display: flex; justify-content: between; align-items: center;">
+                <span style="font-size: 1.2em; color: #667eea; font-weight: bold;">
+                    {{ "%.2f"|format(product.price) }} руб.
+                </span>
+                <span class="btn" style="padding: 8px 15px; font-size: 0.9em;">
+                    Подробнее
+                </span>
+            </div>
+        </a>
+    </div>
+    {% else %}
+    <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+        <h3 style="color: #666;">Товары не найдены</h3>
+        <p>Попробуйте изменить параметры фильтрации</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'Data_Base.html' %}
+
+{% block title %}Главная - сайт Gamehub{% endblock %}
+
+{% block content %}
+<h1 style="font-size: 3em; color: #022f7e; margin-bottom: 20px;">Gamehub</h1>
+<p style="font-size: 1.2em; color: #771609; margin-bottom: 30px;">Онлайн магазин видео игр!</p>
+
+<div class="hero-section" style="margin-bottom: 40px;">
+    <a href="/shop" class="btn">Начать покупки</a>
+    <a href="/game_shop" class="btn" style="background: linear-gradient(135deg, #f093fb, #f5576c);">🎮 Игровая распродажа</a>
+    <a href="/" class="btn" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">👤 Личный кабинет</a>
+</div>
+
+<div class="cards">
+    {% for i in shop %}
+    <div class="card" style="text-align: center; position: relative; overflow: hidden;">
+        <h3>{{ i[1] }}</h3>
+        <p style="color: #666; margin: 10px 0;">{{ i[2] }}</p>
+        <p style="font-size: 1.2em; font-weight: bold; color: #667eea;">{{ i[3] }} руб.</p>
+        <img src="{{ i[4] }}" width="200" height="110" style="border-radius: 10px; margin: 10px 0;">
+        <div style="margin-top: 15px;">
+            <a href="/buy/{{ i[0] }}" class="btn" style="padding: 8px 20px; font-size: 0.9em;">Купить сейчас</a>
+            <a href="/product/{{ i[0] }}" class="btn" style="padding: 8px 20px; font-size: 0.9em; background: #6c757d;">Подробнее</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 15px; color: white; text-align: center;">
+    <h2>Специальное предложение для новых пользователей!</h2>
+    <p style="font-size: 1.1em; margin: 15px 0;">Зарегистрируйтесь сегодня и получите скидку 15% на первую покупку</p>
+    <a href="/" class="btn" style="background: #ffd700; color: #000; margin-top: 15px;">Зарегистрироваться и получить скидку</a>
+</div>
+
+<div style="margin-top: 40px; text-align: center;">
+    <h2>Свяжитесь с нами</h2>
+    <p style="margin: 15px 0;">Есть вопросы? Мы всегда рады помочь!</p>
+    <a href="/contact" class="btn">Контакты</a>
+    <a href="/support" class="btn" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">Техподдержка</a>
+</div>
+
+<style>
+    .card {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        transition: left 0.5s;
+    }
+    
+    .card:hover::before {
+        left: 100%;
+    }
+    
+    .discount-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #ff4757;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size: 0.8em;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}

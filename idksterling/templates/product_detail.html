@@ -1,0 +1,87 @@
+{% extends 'Data_Base.html' %}
+
+{% block title %} {{ product.name }} - GameHub {% endblock %}
+
+{% block content %}
+<div class="product-detail">
+    <div class="product-header" style="display: flex; gap: 30px; margin-bottom: 40px;">
+        <div class="product-image">
+            <img src="{{ product.image_link }}" alt="{{ product.name }}" 
+                 style="width: 300px; height: 200px; object-fit: cover; border-radius: 15px;">
+        </div>
+        <div class="product-info" style="flex: 1;">
+            <h1 style="color: #022f7e; margin-bottom: 10px;">{{ product.name }}</h1>
+            <p style="color: #666; margin-bottom: 15px;">{{ product.genre_name }} • {{ product.publisher_name }}</p>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">{{ product.description }}</p>
+            <div class="price" style="font-size: 2em; color: #667eea; font-weight: bold; margin-bottom: 20px;">
+                {{ "%.2f"|format(product.price) }} руб.
+            </div>
+            
+            {% if session.user_id %}
+            <form method="POST" action="{{ url_for('buy_product', product_id=product.id) }}" style="margin-bottom: 20px;">
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <label for="quantity">Количество:</label>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" max="10" 
+                           style="padding: 5px; width: 60px;">
+                    <button type="submit" class="btn" 
+                            style="background: linear-gradient(135deg, #28a745, #20c997);">
+                        🛒 Купить сейчас
+                    </button>
+                </div>
+            </form>
+            {% else %}
+            <a href="{{ url_for('login') }}" class="btn" 
+               style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                Войдите для покупки
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if session.user_id %}
+    <div class="review-form" style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
+        <h3>Добавить отзыв</h3>
+        <form method="POST" action="{{ url_for('add_review', product_id=product.id) }}">
+            <div style="margin-bottom: 15px;">
+                <label for="rating">Оценка:</label>
+                <select id="rating" name="rating" required style="padding: 5px; margin-left: 10px;">
+                    <option value="5">★★★★★ Отлично</option>
+                    <option value="4">★★★★ Хорошо</option>
+                    <option value="3">★★★ Удовлетворительно</option>
+                    <option value="2">★★ Плохо</option>
+                    <option value="1">★ Ужасно</option>
+                </select>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="comment">Комментарий:</label><br>
+                <textarea id="comment" name="comment" rows="4" 
+                          style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ddd;"></textarea>
+            </div>
+            <button type="submit" class="btn" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                Отправить отзыв
+            </button>
+        </form>
+    </div>
+    {% endif %}
+
+    <div class="reviews">
+        <h3>Отзывы покупателей</h3>
+        {% if reviews %}
+            {% for review in reviews %}
+            <div class="review-card" style="border: 1px solid #ddd; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                <div style="display: flex; justify-content: between; margin-bottom: 10px;">
+                    <strong>{{ review.username }}</strong>
+                    <span style="color: #ffc107;">
+                        {% for i in range(review.rating) %}★{% endfor %}
+                    </span>
+                    <small style="color: #666; margin-left: auto;">{{ review.created_at[:10] }}</small>
+                </div>
+                <p>{{ review.comment }}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>Пока нет отзывов. Будьте первым!</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

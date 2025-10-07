@@ -1,0 +1,35 @@
+{% extends 'Data_Base.html' %}
+
+{% block title %} Главная - Gamehub {% endblock %}
+
+{% block content %}
+<h1 style="font-size: 3em; color: #0400ff; margin-bottom: 20px;"> Gamehub</h1>
+<p style="font-size: 1.2em; color: #0b7e78; margin-bottom: 30px;">Онлайн магазин видео игр!</p>
+
+<div class="hero-section" style="margin-bottom: 40px;">
+    <a href="/shop" class="btn"> Начать покупки</a>
+    <a href="/game_shop" class="btn" style="background: linear-gradient(135deg, #d103e7, #790010);"> Игровая распродажа</a>
+</div>
+
+<div class="cards">
+    <div class="card">
+        <h3> Горячие предложения</h3>
+        <p>Самые выгодные цены на лучшие товары. Успей купить!</p>
+    </div>
+    
+    <div class="card">
+        <h3> Эксклюзивные товары</h3>
+        <p>Уникальные продукты, которые вы не найдете больше нигде</p>
+    </div>
+</div>
+
+<div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #279dec, #5a010d); border-radius: 15px; color: white;">
+    <h2> Специальное предложение!</h2>
+    <p>Только сегодня - скидка 20% на все товары по промокоду: GameON!</p>
+    <a href="/shop" class="btn" style="background: rgb(247, 2, 2); color: #000000; margin-top: 15px;">Воспользоваться предложением</a>
+</div>
+
+<div style="margin-top: 40px;">
+    <a href="/contact" class="btn"> Контакты.</a>
+</div>
+{% endblock %}
